@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
+
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -21,17 +22,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        initViews()
+        initViewModel()
+    }
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+    private fun initViews() {
+        fab.setOnClickListener {
+            viewModel.getRandomTrivia() // Get a random number trivia when the fab is clicked.
         }
     }
 
-
     private fun initViewModel() {
         // Initialize the MainActivityViewModel.
-
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
 
         // Observe the trivia object.
@@ -44,6 +46,8 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         })
     }
+
+
 
 
 
