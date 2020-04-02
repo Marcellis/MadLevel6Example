@@ -1,13 +1,13 @@
 package com.example.numbers_kotlin
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+
 
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         // Initialize the MainActivityViewModel.
-        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
         // Observe the trivia object.
         viewModel.trivia.observe(this, Observer {
@@ -46,8 +46,6 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         })
     }
-
-
 
 
 
