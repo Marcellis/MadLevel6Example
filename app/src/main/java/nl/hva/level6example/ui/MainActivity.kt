@@ -1,52 +1,28 @@
-package com.example.numbers_kotlin
+package nl.hva.level6example.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-
-
-
+import androidx.activity.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
+import nl.hva.level6example.R
+import nl.hva.level6example.vm.TriviaViewModel
 
 class MainActivity : AppCompatActivity() {
-
-
-    private lateinit var viewModel: MainActivityViewModel
+    private val viewModel: TriviaViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        initViews()
-        initViewModel()
-    }
 
-    private fun initViews() {
         fab.setOnClickListener {
-            viewModel.getRandomTrivia() // Get a random number trivia when the fab is clicked.
+            viewModel.getTriviaNumber()
         }
     }
-
-    private fun initViewModel() {
-        // Initialize the MainActivityViewModel.
-        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-
-        // Observe the trivia object.
-        viewModel.trivia.observe(this, Observer {
-            tvTrivia.text = it?.text
-        })
-
-        // Observe the error message.
-        viewModel.error.observe(this, Observer {
-            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-        })
-    }
-
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

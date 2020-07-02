@@ -1,4 +1,4 @@
-package com.example.numbers_kotlin
+package nl.hva.level6example
 
 import org.junit.Test
 

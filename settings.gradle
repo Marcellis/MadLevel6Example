@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='numbers-kotlin'
+rootProject.name='level6example'
